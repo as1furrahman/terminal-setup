@@ -177,24 +177,18 @@ function yy() {
 }
 
 # ============================================================================
-# Custom Block Prompt (BreadOnPenguins style with Mellifluous colors)
-# ============================================================================
-# Mellifluous palette:
-# Background: #1a1a1a | Tan: #c0af8c | Green: #b3b393 | Lavender: #a8a1be
-# Gray: #5b5b5b | Red: #d29393 | Foreground: #dadada
-
-# Block-style prompt: [time] [user] [path] ❯
-NEWLINE=$'\n'
-PROMPT="${NEWLINE}%K{#5b5b5b}%F{#dadada} %D{%_I:%M%P} %K{#c0af8c}%F{#1a1a1a} %n %K{#b3b393}%F{#1a1a1a} %~ %f%k ❯ "
-
-# Alternative: With hostname (uncomment if wanted)
-# PROMPT="${NEWLINE}%K{#5b5b5b}%F{#dadada} %D{%_I:%M%P} %K{#c0af8c}%F{#1a1a1a} %n@%m %K{#b3b393}%F{#1a1a1a} %~ %f%k ❯ "
-
-# ============================================================================
 # Greeting Echo (BreadOnPenguins style with Mellifluous colors)
 # ============================================================================
 # Shows: time | uptime | kernel version
+NEWLINE=$'\n'
 echo -e "${NEWLINE}\x1b[38;2;192;175;140m\x1b[48;2;26;26;26m it's$(print -P '%D{%_I:%M%P}') \x1b[38;2;179;179;147m\x1b[48;2;26;26;26m $(uptime -p | cut -c 4-) \x1b[38;2;218;218;218m\x1b[48;2;26;26;26m $(uname -r) \033[0m"
+
+# ============================================================================
+# Starship Prompt
+# ============================================================================
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 
 # ============================================================================
 # Ghostty Shell Integration
@@ -202,11 +196,3 @@ echo -e "${NEWLINE}\x1b[38;2;192;175;140m\x1b[48;2;26;26;26m it's$(print -P '%D{
 if [[ -n "$GHOSTTY_RESOURCES_DIR" ]]; then
     source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi
-
-# ============================================================================
-# Optional: Starship (disabled - using custom PS1 instead)
-# ============================================================================
-# Uncomment below to use Starship instead of custom PS1:
-# if command -v starship &> /dev/null; then
-#     eval "$(starship init zsh)"
-# fi
