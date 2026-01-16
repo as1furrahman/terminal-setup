@@ -1,0 +1,77 @@
+# Mellifluous theme for btop
+# Place in ~/.config/btop/themes/mellifluous.theme
+
+# Main background
+theme[main_bg]="#1a1a1a"
+
+# Main text color
+theme[main_fg]="#dadada"
+
+# Title color
+theme[title]="#c0af8c"
+
+# Highlight color
+theme[hi_fg]="#a8a1be"
+
+# Selected background
+theme[selected_bg]="#2d2d2d"
+
+# Selected foreground
+theme[selected_fg]="#c0af8c"
+
+# Inactive foreground
+theme[inactive_fg]="#5b5b5b"
+
+# Graphs
+theme[proc_misc]="#b39fb0"
+theme[cpu_box]="#5b5b5b"
+theme[mem_box]="#5b5b5b"
+theme[net_box]="#5b5b5b"
+theme[proc_box]="#5b5b5b"
+
+# CPU graph colors (gradient)
+theme[cpu_start]="#b3b393"
+theme[cpu_mid]="#cbaa89"
+theme[cpu_end]="#c95954"
+
+# Memory colors (gradient)
+theme[mem_start]="#a8a1be"
+theme[mem_mid]="#b39fb0"
+theme[mem_end]="#9c6995"
+
+# Network colors
+theme[download_start]="#74a39e"
+theme[download_mid]="#a8a1be"
+theme[download_end]="#5a6599"
+
+theme[upload_start]="#b3b393"
+theme[upload_mid]="#cbaa89"
+theme[upload_end]="#a6794c"
+
+# Process colors
+theme[process_start]="#b3b393"
+theme[process_mid]="#cbaa89"
+theme[process_end]="#d29393"
+
+# Temperature colors
+theme[temp_start]="#b3b393"
+theme[temp_mid]="#cbaa89"
+theme[temp_end]="#c95954"
+
+# Free/used colors
+theme[free_start]="#b3b393"
+theme[free_mid]="#74a39e"
+theme[free_end]="#a8a1be"
+
+theme[used_start]="#cbaa89"
+theme[used_mid]="#d29393"
+theme[used_end]="#c95954"
+
+# Available/cached colors
+theme[available_start]="#74a39e"
+theme[available_mid]="#a8a1be"
+theme[available_end]="#b39fb0"
+
+theme[cached_start]="#a8a1be"
+theme[cached_mid]="#b39fb0"
+theme[cached_end]="#9c6995"

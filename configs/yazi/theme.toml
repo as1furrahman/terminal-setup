@@ -1,7 +1,6 @@
-# Yazi File Manager - Theme Configuration
+# Yazi File Manager - Theme Configuration (Mellifluous)
 # ~/.config/yazi/theme.toml
 # Part of: Cross-Distro Terminal Setup
-# Using sensible defaults (custom theming deferred)
 
 [manager]
 # Hovered item
@@ -10,59 +9,59 @@ hovered = { reversed = true }
 # Preview area
 preview_hovered = { underline = true }
 
-# Selection
-marker_copied   = { fg = "green", bold = true }
-marker_cut      = { fg = "red", bold = true }
-marker_marked   = { fg = "cyan", bold = true }
-marker_selected = { fg = "yellow", bold = true }
+# Selection markers - Mellifluous colors
+marker_copied   = { fg = "#b3b393", bold = true }
+marker_cut      = { fg = "#d29393", bold = true }
+marker_marked   = { fg = "#a8a1be", bold = true }
+marker_selected = { fg = "#cbaa89", bold = true }
 
 # Tabs
-tab_active   = { reversed = true }
-tab_inactive = {}
+tab_active   = { fg = "#1a1a1a", bg = "#c0af8c", bold = true }
+tab_inactive = { fg = "#5b5b5b" }
 tab_width    = 1
 
 # Count indicator
-count_copied   = { fg = "green", bold = true }
-count_cut      = { fg = "red", bold = true }
-count_selected = { fg = "yellow", bold = true }
+count_copied   = { fg = "#b3b393", bold = true }
+count_cut      = { fg = "#d29393", bold = true }
+count_selected = { fg = "#cbaa89", bold = true }
 
-# Border
+# Border - Mellifluous muted gray
 border_symbol = "│"
-border_style  = { fg = "gray" }
+border_style  = { fg = "#5b5b5b" }
 
 [status]
 separator_open  = ""
 separator_close = ""
-separator_style = { fg = "gray" }
+separator_style = { fg = "#5b5b5b" }
 
-# Status bar sections
-mode_normal = { fg = "black", bg = "blue", bold = true }
-mode_select = { fg = "black", bg = "green", bold = true }
-mode_unset  = { fg = "black", bg = "red", bold = true }
+# Status bar sections - Mellifluous themed
+mode_normal = { fg = "#1a1a1a", bg = "#b3b393", bold = true }
+mode_select = { fg = "#1a1a1a", bg = "#cbaa89", bold = true }
+mode_unset  = { fg = "#1a1a1a", bg = "#d29393", bold = true }
 
-progress_label  = { fg = "white", bold = true }
-progress_normal = { fg = "blue", bg = "black" }
-progress_error  = { fg = "red", bg = "black" }
+progress_label  = { fg = "#dadada", bold = true }
+progress_normal = { fg = "#a8a1be", bg = "#1a1a1a" }
+progress_error  = { fg = "#d29393", bg = "#1a1a1a" }
 
-permissions_t = { fg = "green" }
-permissions_r = { fg = "yellow" }
-permissions_w = { fg = "red" }
-permissions_x = { fg = "cyan" }
-permissions_s = { fg = "magenta" }
+permissions_t = { fg = "#b3b393" }
+permissions_r = { fg = "#cbaa89" }
+permissions_w = { fg = "#d29393" }
+permissions_x = { fg = "#74a39e" }
+permissions_s = { fg = "#b39fb0" }
 
 [input]
-border   = { fg = "blue" }
+border   = { fg = "#a8a1be" }
 title    = {}
 value    = {}
 selected = { reversed = true }
 
 [select]
-border   = { fg = "blue" }
-active   = { fg = "magenta", bold = true }
+border   = { fg = "#a8a1be" }
+active   = { fg = "#b39fb0", bold = true }
 inactive = {}
 
 [completion]
-border   = { fg = "blue" }
+border   = { fg = "#a8a1be" }
 active   = { reversed = true }
 inactive = {}
 
@@ -70,85 +69,85 @@ inactive = {}
 icon_offset = 2
 
 [tasks]
-border  = { fg = "blue" }
+border  = { fg = "#a8a1be" }
 title   = {}
 hovered = { reversed = true }
 
 [which]
-mask            = { bg = "black" }
-cand            = { fg = "cyan" }
-rest            = { fg = "gray" }
-desc            = { fg = "white" }
+mask            = { bg = "#1a1a1a" }
+cand            = { fg = "#74a39e" }
+rest            = { fg = "#5b5b5b" }
+desc            = { fg = "#dadada" }
 separator       = "  "
-separator_style = { fg = "gray" }
+separator_style = { fg = "#5b5b5b" }
 
 [help]
-on      = { fg = "cyan" }
-run     = { fg = "magenta" }
+on      = { fg = "#74a39e" }
+run     = { fg = "#b39fb0" }
 desc    = {}
 hovered = { reversed = true }
-footer  = { fg = "gray" }
+footer  = { fg = "#5b5b5b" }
 
 [notify]
-title_info  = { fg = "green" }
-title_warn  = { fg = "yellow" }
-title_error = { fg = "red" }
+title_info  = { fg = "#b3b393" }
+title_warn  = { fg = "#cbaa89" }
+title_error = { fg = "#d29393" }
 
 [filetype]
 rules = [
-    # Directories
-    { name = "*/", fg = "blue", bold = true },
+    # Directories - Mellifluous lavender
+    { name = "*/", fg = "#a8a1be", bold = true },
 
-    # Symlinks
-    { is = "link", fg = "cyan", italic = true },
+    # Symlinks - Mellifluous cyan
+    { is = "link", fg = "#74a39e", italic = true },
 
-    # Orphan symlinks
-    { is = "orphan", fg = "red", italic = true },
+    # Orphan symlinks - Mellifluous red
+    { is = "orphan", fg = "#d29393", italic = true },
 
-    # Executables
-    { is = "exec", fg = "green" },
+    # Executables - Mellifluous green
+    { is = "exec", fg = "#b3b393" },
 
-    # Documents
-    { mime = "text/*", fg = "white" },
-    { mime = "application/pdf", fg = "red" },
-    { mime = "application/msword", fg = "blue" },
+    # Documents - Mellifluous foreground
+    { mime = "text/*", fg = "#dadada" },
+    { mime = "application/pdf", fg = "#d29393" },
+    { mime = "application/msword", fg = "#a8a1be" },
 
-    # Images
-    { mime = "image/*", fg = "magenta" },
+    # Images - Mellifluous mauve
+    { mime = "image/*", fg = "#b39fb0" },
 
-    # Videos
-    { mime = "video/*", fg = "yellow" },
+    # Videos - Mellifluous lavender
+    { mime = "video/*", fg = "#a8a1be" },
 
-    # Audio
-    { mime = "audio/*", fg = "cyan" },
+    # Audio - Mellifluous cyan
+    { mime = "audio/*", fg = "#74a39e" },
 
-    # Archives
-    { mime = "application/zip", fg = "red" },
-    { mime = "application/gzip", fg = "red" },
-    { mime = "application/x-tar", fg = "red" },
-    { mime = "application/x-rar", fg = "red" },
+    # Archives - Mellifluous red
+    { mime = "application/zip", fg = "#d29393" },
+    { mime = "application/gzip", fg = "#d29393" },
+    { mime = "application/x-tar", fg = "#d29393" },
+    { mime = "application/x-rar", fg = "#d29393" },
 
     # Source code
-    { name = "*.py", fg = "yellow" },
-    { name = "*.js", fg = "yellow" },
-    { name = "*.ts", fg = "blue" },
-    { name = "*.rs", fg = "red" },
-    { name = "*.go", fg = "cyan" },
-    { name = "*.lua", fg = "blue" },
-    { name = "*.sh", fg = "green" },
-    { name = "*.zsh", fg = "green" },
+    { name = "*.py", fg = "#cbaa89" },
+    { name = "*.js", fg = "#cbaa89" },
+    { name = "*.ts", fg = "#a8a1be" },
+    { name = "*.rs", fg = "#d29393" },
+    { name = "*.go", fg = "#74a39e" },
+    { name = "*.lua", fg = "#a8a1be" },
+    { name = "*.sh", fg = "#b3b393" },
+    { name = "*.zsh", fg = "#b3b393" },
 
-    # Config files
-    { name = "*.toml", fg = "gray" },
-    { name = "*.yaml", fg = "gray" },
-    { name = "*.yml", fg = "gray" },
-    { name = "*.json", fg = "gray" },
-    { name = "*.conf", fg = "gray" },
+    # Config files - Mellifluous gray
+    { name = "*.toml", fg = "#5b5b5b" },
+    { name = "*.yaml", fg = "#5b5b5b" },
+    { name = "*.yml", fg = "#5b5b5b" },
+    { name = "*.json", fg = "#5b5b5b" },
+    { name = "*.conf", fg = "#5b5b5b" },
 
     # Git
-    { name = ".git/", fg = "red" },
-    { name = ".gitignore", fg = "gray" },
+    { name = ".git/", fg = "#c95954" },
+    { name = ".gitignore", fg = "#5b5b5b" },
 
     # Hidden files
-    { name = ".*", fg = "gray" },
+    { name = ".*", fg = "#5b5b5b" },
 ]

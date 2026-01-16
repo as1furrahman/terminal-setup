@@ -1,64 +1,70 @@
-# Starship Prompt Configuration
+# Starship Prompt Configuration - Mellifluous Theme
 # Part of: Cross-Distro Terminal Setup
 # Docs: https://starship.rs/config/
 
 # ============================================================================
-# Prompt Format
+# Prompt Format - Two-line aesthetic prompt
 # ============================================================================
 format = """
+[┌─](fg:#5b5b5b)\
 $username\
 $hostname\
 $directory\
 $git_branch\
 $git_status\
+$fill\
 $python\
 $rust\
 $golang\
 $nodejs\
-$lua\
 $docker_context\
-$cmd_duration\
-$line_break\
-$character"""
+$cmd_duration
+[└─](fg:#5b5b5b)$character"""
 
 # Add newline before prompt
 add_newline = true
 
 # ============================================================================
-# Character (Prompt Symbol)
+# Character (Prompt Symbol) - Mellifluous themed
 # ============================================================================
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
+success_symbol = "[❯](bold #b3b393)"
+error_symbol = "[❯](bold #d29393)"
+vimcmd_symbol = "[❮](bold #b3b393)"
 
 # ============================================================================
-# Username
+# Fill (for right-aligned content)
+# ============================================================================
+[fill]
+symbol = " "
+
+# ============================================================================
+# Username - Mellifluous green
 # ============================================================================
 [username]
-show_always = false
-style_user = "bold cyan"
-style_root = "bold red"
-format = "[$user]($style)@"
+show_always = true
+style_user = "bold #b3b393"
+style_root = "bold #c95954"
+format = "[$user]($style)"
 
 # ============================================================================
-# Hostname
+# Hostname - Mellifluous lavender
 # ============================================================================
 [hostname]
-ssh_only = true
-style = "bold blue"
-format = "[$hostname]($style) "
+ssh_only = false
+style = "#a8a1be"
+format = "[@$hostname]($style) "
 
 # ============================================================================
-# Directory
+# Directory - Mellifluous tan (bold)
 # ============================================================================
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-style = "bold cyan"
+style = "bold #c0af8c"
 format = "[$path]($style)[$read_only]($read_only_style) "
 read_only = " 󰌾"
-read_only_style = "red"
+read_only_style = "#d29393"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -66,17 +72,18 @@ read_only_style = "red"
 "Music" = " "
 "Pictures" = " "
 "Videos" = " "
+"~" = " "
 
 # ============================================================================
-# Git
+# Git - Mellifluous mauve/red
 # ============================================================================
 [git_branch]
 symbol = " "
-style = "bold purple"
+style = "#b39fb0"
 format = "on [$symbol$branch]($style) "
 
 [git_status]
-style = "bold yellow"
+style = "#d29393"
 format = '([\[$all_status$ahead_behind\]]($style) )'
 stashed = "📦"
 modified = "!"
@@ -89,61 +96,61 @@ behind = "⇣"
 diverged = "⇕"
 
 # ============================================================================
-# Command Duration
+# Command Duration - Mellifluous warm yellow
 # ============================================================================
 [cmd_duration]
-min_time = 2_000  # Show if command takes > 2 seconds
-style = "bold yellow"
-format = "took [$duration]($style) "
+min_time = 500
+style = "#a6794c"
+format = "[$duration]($style) "
 
 # ============================================================================
-# Programming Languages
+# Programming Languages - Mellifluous palette
 # ============================================================================
 [python]
 symbol = " "
-style = "bold yellow"
+style = "#cbaa89"
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [rust]
 symbol = " "
-style = "bold red"
+style = "#d29393"
 format = "[$symbol($version )]($style)"
 
 [golang]
 symbol = " "
-style = "bold cyan"
+style = "#74a39e"
 format = "[$symbol($version )]($style)"
 
 [nodejs]
 symbol = " "
-style = "bold green"
+style = "#b3b393"
 format = "[$symbol($version )]($style)"
 
 [lua]
 symbol = " "
-style = "bold blue"
+style = "#a8a1be"
 format = "[$symbol($version )]($style)"
 
 # ============================================================================
-# Docker
+# Docker - Mellifluous blue
 # ============================================================================
 [docker_context]
 symbol = " "
-style = "bold blue"
+style = "#5a6599"
 format = "[$symbol$context]($style) "
 only_with_files = true
 
 # ============================================================================
-# Package Version
+# Package (disabled for cleaner prompt)
 # ============================================================================
 [package]
-disabled = true  # Disable for cleaner prompt
+disabled = true
 
 # ============================================================================
-# Time (disabled by default, uncomment to enable)
+# Time (optional - uncomment if desired)
 # ============================================================================
 [time]
 disabled = true
-format = '🕙 [$time]($style) '
+format = '[$time]($style) '
 time_format = "%H:%M"
-style = "bold dimmed white"
+style = "#5b5b5b"

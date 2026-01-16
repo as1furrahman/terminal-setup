@@ -381,6 +381,8 @@ deploy_all_configs() {
     
     # btop
     deploy_config "${CONFIG_DIR}/btop/btop.conf" "${HOME}/.config/btop/btop.conf"
+    mkdir -p "${HOME}/.config/btop/themes"
+    deploy_config "${CONFIG_DIR}/btop/themes/mellifluous.theme" "${HOME}/.config/btop/themes/mellifluous.theme"
     
     # tmux
     deploy_config "${CONFIG_DIR}/tmux/.tmux.conf" "${HOME}/.tmux.conf"
