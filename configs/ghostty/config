@@ -52,10 +52,12 @@ selection-invert-fg-bg = true
 # ============================================================================
 # GTK Specific (Linux)
 # ============================================================================
-gtk-single-instance = true
-gtk-titlebar = false
-gtk-tabs-location = top
-gtk-wide-tabs = false
+# These settings only affect Ghostty, not system-wide GTK settings.
+# Uncomment and adjust if needed:
+# gtk-single-instance = true
+# gtk-titlebar = false
+# gtk-tabs-location = top
+# gtk-wide-tabs = false
 
 # ============================================================================
 # Keybindings
