@@ -1,100 +1,154 @@
-# Starship Prompt - Design Option B: "Minimal Blocks"
-# Combines: BreadOnPenguins solid blocks + Minimal info
-# Style: Clean blocks without powerline arrows, single line
+# Starship Prompt Configuration - Mellifluous Theme
+# Part of: Cross-Distro Terminal Setup
+# Docs: https://starship.rs/config/
 
-add_newline = true
-command_timeout = 1000
-
+# ============================================================================
+# Prompt Format - Two-line aesthetic prompt
+# ============================================================================
 format = """
 $username\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
-$cmd_duration\
 $fill\
-$python$rust$golang\
-$line_break\
+$python\
+$rust\
+$golang\
+$nodejs\
+$docker_context\
+$cmd_duration
 $character"""
 
+# Add newline before prompt
+add_newline = true
+
 # ============================================================================
-# Character
+# Character (Prompt Symbol) - Mellifluous themed
 # ============================================================================
 [character]
 success_symbol = "[❯](bold #b3b393)"
 error_symbol = "[❯](bold #d29393)"
+vimcmd_symbol = "[❮](bold #b3b393)"
 
 # ============================================================================
-# Username - Tan block
-# ============================================================================
-[username]
-show_always = true
-style_user = "bg:#c0af8c fg:#1a1a1a bold"
-style_root = "bg:#d29393 fg:#1a1a1a bold"
-format = '[ $user ]($style)'
-
-# ============================================================================
-# Directory - Green block
-# ============================================================================
-[directory]
-style = "bg:#b3b393 fg:#1a1a1a bold"
-truncation_length = 3
-truncation_symbol = "…/"
-format = '[ 󰉋 $path ]($style)'
-home_symbol = ""
-
-[directory.substitutions]
-"Documents" = "󰈙"
-"Downloads" = ""
-"~" = ""
-
-# ============================================================================
-# Git Branch - Lavender block
-# ============================================================================
-[git_branch]
-symbol = "󰘬 "
-style = "bg:#a8a1be fg:#1a1a1a"
-format = '[ $symbol$branch ]($style)'
-
-[git_status]
-format = '[$all_status]($style)'
-style = "bg:#5b5b5b fg:#dadada"
-modified = "!"
-staged = "+"
-untracked = "?"
-ahead = "⇡"
-behind = "⇣"
-
-# ============================================================================
-# Command Duration - Only if > 2s
-# ============================================================================
-[cmd_duration]
-min_time = 2000
-style = "bg:#cbaa89 fg:#1a1a1a"
-format = '[ 󰪢 $duration ]($style)'
-
-# ============================================================================
-# Fill for right alignment
+# Fill (for right-aligned content)
 # ============================================================================
 [fill]
 symbol = " "
 
 # ============================================================================
-# Languages - Right side, no blocks
+# Username - Mellifluous green
+# ============================================================================
+[username]
+show_always = false
+style_user = "bold #b3b393"
+style_root = "bold #c95954"
+format = "[$user]($style)@"
+
+# ============================================================================
+# Hostname - Mellifluous lavender
+# ============================================================================
+[hostname]
+ssh_only = true
+style = "#a8a1be"
+format = "[$hostname]($style) "
+
+# ============================================================================
+# Directory - Mellifluous tan (bold)
+# ============================================================================
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold #c0af8c"
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "#d29393"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Videos" = " "
+
+# ============================================================================
+# Git - Mellifluous mauve/red
+# ============================================================================
+[git_branch]
+symbol = " "
+style = "#b39fb0"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "#d29393"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+stashed = "≡"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+
+# ============================================================================
+# Command Duration - Mellifluous warm yellow
+# ============================================================================
+[cmd_duration]
+min_time = 2000
+style = "#a6794c"
+format = "[$duration]($style) "
+
+# ============================================================================
+# Programming Languages - Mellifluous palette
 # ============================================================================
 [python]
-symbol = ""
+symbol = " "
 style = "#cbaa89"
-format = '[$symbol$version ]($style)'
+format = '[${symbol}(${version} )(\($virtualenv\) )]($style)'
 
 [rust]
-symbol = ""
+symbol = " "
 style = "#d29393"
-format = '[$symbol$version ]($style)'
+format = "[$symbol($version )]($style)"
 
 [golang]
-symbol = ""
+symbol = " "
 style = "#74a39e"
-format = '[$symbol$version ]($style)'
+format = "[$symbol($version )]($style)"
 
+[nodejs]
+symbol = " "
+style = "#b3b393"
+format = "[$symbol($version )]($style)"
+
+[lua]
+symbol = " "
+style = "#a8a1be"
+format = "[$symbol($version )]($style)"
+
+# ============================================================================
+# Docker - Mellifluous blue
+# ============================================================================
+[docker_context]
+symbol = " "
+style = "#5a6599"
+format = "[$symbol$context]($style) "
+only_with_files = true
+
+# ============================================================================
+# Package (disabled for cleaner prompt)
+# ============================================================================
 [package]
 disabled = true
+
+# ============================================================================
+# Time (disabled by default)
+# ============================================================================
+[time]
+disabled = true
+format = '[$time]($style) '
+time_format = "%H:%M"
+style = "#5b5b5b"
