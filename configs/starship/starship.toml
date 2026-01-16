@@ -1,91 +1,153 @@
-# Starship Prompt - Bubble Style (end-4 inspired with Mellifluous colors)
+# Starship Prompt Configuration - Mellifluous Theme
 # Part of: Cross-Distro Terminal Setup
 # Docs: https://starship.rs/config/
 
 # ============================================================================
-# Format - Bubble segments with rounded caps
+# Prompt Format
 # ============================================================================
 format = """
-$cmd_duration\
+$username\
+$hostname\
 $directory\
 $git_branch\
-$line_break\
+$git_status\
+$fill\
+$python\
+$rust\
+$golang\
+$nodejs\
+$docker_context\
+$cmd_duration
 $character"""
 
 add_newline = true
-command_timeout = 1000
 
 # ============================================================================
-# Character - Second line prompt symbol
+# Character (Prompt Symbol) - Mellifluous themed
 # ============================================================================
 [character]
-success_symbol = "[](fg:#b3b393)[  ](bold bg:#b3b393 fg:#1a1a1a)[](fg:#b3b393)"
-error_symbol = "[](fg:#d29393)[  ](bold bg:#d29393 fg:#1a1a1a)[](fg:#d29393)"
-vimcmd_symbol = "[](fg:#a8a1be)[  ](bold bg:#a8a1be fg:#1a1a1a)[](fg:#a8a1be)"
+success_symbol = "[❯](bold #b3b393)"
+error_symbol = "[❯](bold #d29393)"
+vimcmd_symbol = "[❮](bold #b3b393)"
 
 # ============================================================================
-# Command Duration - First bubble (tan)
+# Fill (for right-aligned content)
 # ============================================================================
-[cmd_duration]
-min_time = 0
-style = "bold bg:#c0af8c fg:#1a1a1a"
-format = '[](fg:#c0af8c)[ $duration]($style)[](fg:#c0af8c) '
+[fill]
+symbol = " "
 
 # ============================================================================
-# Directory - Second bubble (green)
+# Username - Mellifluous green
+# ============================================================================
+[username]
+show_always = false
+style_user = "bold #b3b393"
+style_root = "bold #c95954"
+format = "[$user]($style)@"
+
+# ============================================================================
+# Hostname - Mellifluous lavender
+# ============================================================================
+[hostname]
+ssh_only = true
+style = "#a8a1be"
+format = "[$hostname]($style) "
+
+# ============================================================================
+# Directory - Mellifluous tan (bold)
 # ============================================================================
 [directory]
-style = "bold bg:#b3b393 fg:#1a1a1a"
 truncation_length = 3
-truncation_symbol = "…/"
-home_symbol = ""
-format = '[](fg:#b3b393)[$path]($style)[](fg:#b3b393) [](fg:#a8a1be)[ ](bg:#a8a1be fg:#1a1a1a)[](fg:#a8a1be)'
+truncate_to_repo = true
+style = "bold #c0af8c"
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "#d29393"
 
 [directory.substitutions]
-"Documents" = " 󰈙"
+"Documents" = "󰈙 "
 "Downloads" = " "
-"Music" = " 󰎈"
+"Music" = " "
 "Pictures" = " "
 "Videos" = " "
-"~" = ""
 
 # ============================================================================
-# Git Branch - Third bubble (lavender) - only shows in git repos
+# Git - Mellifluous mauve/red
 # ============================================================================
 [git_branch]
-symbol = "󰘬 "
-style = "bold bg:#a8a1be fg:#1a1a1a"
-truncation_length = 12
-format = ' [](fg:#a8a1be)[$symbol$branch]($style)[](fg:#a8a1be)'
+symbol = " "
+style = "#b39fb0"
+format = "on [$symbol$branch]($style) "
 
 [git_status]
-style = "bold bg:#cbaa89 fg:#1a1a1a"
-format = '( [](fg:#cbaa89)[$all_status$ahead_behind]($style)[](fg:#cbaa89))'
-conflicted = "="
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-untracked = "?"
+style = "#d29393"
+format = '([\[$all_status$ahead_behind\]]($style) )'
 stashed = "≡"
 modified = "!"
 staged = "+"
 renamed = "»"
 deleted = "✘"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
 
 # ============================================================================
-# Disabled modules for cleaner look
+# Command Duration - Mellifluous warm yellow
+# ============================================================================
+[cmd_duration]
+min_time = 2000
+style = "#a6794c"
+format = "[$duration]($style) "
+
+# ============================================================================
+# Programming Languages - Mellifluous palette
+# ============================================================================
+[python]
+symbol = " "
+style = "#cbaa89"
+format = '[${symbol}(${version} )(\($virtualenv\) )]($style)'
+
+[rust]
+symbol = " "
+style = "#d29393"
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = " "
+style = "#74a39e"
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+symbol = " "
+style = "#b3b393"
+format = "[$symbol($version )]($style)"
+
+[lua]
+symbol = " "
+style = "#a8a1be"
+format = "[$symbol($version )]($style)"
+
+# ============================================================================
+# Docker - Mellifluous blue
+# ============================================================================
+[docker_context]
+symbol = " "
+style = "#5a6599"
+format = "[$symbol$context]($style) "
+only_with_files = true
+
+# ============================================================================
+# Package (disabled for cleaner prompt)
 # ============================================================================
 [package]
 disabled = true
 
-[nodejs]
+# ============================================================================
+# Time (disabled by default)
+# ============================================================================
+[time]
 disabled = true
-
-[python]
-disabled = true
-
-[rust]
-disabled = true
-
-[golang]
-disabled = true
+format = '[$time]($style) '
+time_format = "%H:%M"
+style = "#5b5b5b"
