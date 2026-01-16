@@ -11,9 +11,10 @@
 # - Graceful error handling
 #
 # Usage:
-#   ./install.sh           # Interactive mode
-#   ./install.sh --dry-run # Show what would be done
-#   ./install.sh --help    # Show help
+#   ./install.sh              # Full installation
+#   ./install.sh --config-only # Only deploy config files (skip packages)
+#   ./install.sh --dry-run    # Show what would be done
+#   ./install.sh --help       # Show help
 # ============================================================================
 
 set -euo pipefail
@@ -36,6 +37,7 @@ NC='\033[0m' # No Color
 # Flags
 DRY_RUN=false
 VERBOSE=false
+CONFIG_ONLY=false
 
 # ============================================================================
 # Utility Functions
@@ -531,9 +533,15 @@ print_help() {
     echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "Options:"
-    echo "  --dry-run    Show what would be done without making changes"
-    echo "  --verbose    Show detailed output"
-    echo "  --help       Show this help message"
+    echo "  --config-only  Only deploy config files (skip package installation)"
+    echo "  --dry-run      Show what would be done without making changes"
+    echo "  --verbose      Show detailed output"
+    echo "  --help         Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0                  # Full installation (packages + configs)"
+    echo "  $0 --config-only    # Quick config update (no package installation)"
+    echo "  $0 --dry-run        # Preview what would be done"
     echo ""
     echo "Supported distributions:"
     echo "  - Arch Linux (and derivatives: Manjaro, EndeavourOS, etc.)"
@@ -550,6 +558,10 @@ main() {
     # Parse arguments
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            --config-only)
+                CONFIG_ONLY=true
+                log_info "Running in config-only mode (skipping package installation)"
+                ;;
             --dry-run)
                 DRY_RUN=true
                 log_info "Running in dry-run mode"
@@ -580,29 +592,35 @@ main() {
     # Step 1: Detect distribution
     detect_distro
     
-    # Step 2: Check AUR helper (Arch only)
-    check_aur_helper
-    
-    # Step 3: Get packages
-    get_packages
-    
-    # Step 4: Install packages
-    log_step "Installing packages..."
-    install_packages "${PACKAGES[@]}"
-    
-    # Step 5: Install AUR packages (Arch only)
-    if [[ "${DISTRO}" == "arch" ]] && [[ ${#AUR_PACKAGES[@]} -gt 0 ]]; then
-        install_aur_packages "${AUR_PACKAGES[@]}"
+    if ! $CONFIG_ONLY; then
+        # Step 2: Check AUR helper (Arch only)
+        check_aur_helper
+        
+        # Step 3: Get packages
+        get_packages
+        
+        # Step 4: Install packages
+        log_step "Installing packages..."
+        install_packages "${PACKAGES[@]}"
+        
+        # Step 5: Install AUR packages (Arch only)
+        if [[ "${DISTRO}" == "arch" ]] && [[ ${#AUR_PACKAGES[@]} -gt 0 ]]; then
+            install_aur_packages "${AUR_PACKAGES[@]}"
+        fi
+        
+        # Step 6: Install font
+        install_font
+    else
+        log_info "Skipping package installation (--config-only)"
     fi
-    
-    # Step 6: Install font
-    install_font
     
     # Step 7: Deploy configs
     deploy_all_configs
     
-    # Step 8: Set Zsh as default
-    set_zsh_default
+    if ! $CONFIG_ONLY; then
+        # Step 8: Set Zsh as default
+        set_zsh_default
+    fi
     
     # Step 9: Verify
     verify_installation
