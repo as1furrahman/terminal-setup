@@ -1,0 +1,102 @@
+# Yazi File Manager - Main Configuration
+# ~/.config/yazi/yazi.toml
+# Part of: Cross-Distro Terminal Setup
+# Docs: https://yazi-rs.github.io/docs/configuration/yazi
+
+[manager]
+# Layout ratios: parent:current:preview
+ratio = [1, 4, 3]
+
+# Sorting
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+sort_translit = false
+
+# Display
+show_hidden = false
+show_symlink = true
+scrolloff = 5
+
+# Line mode (shows file info on the right side)
+linemode = "size"
+
+[preview]
+# Enable image preview (works with Ghostty)
+image_enabled = true
+
+# Maximum preview dimensions
+max_width = 600
+max_height = 900
+
+# Use built-in image protocol detection
+image_filter = "triangle"
+
+# Cache settings
+cache_dir = ""
+
+# Tab width for text preview
+tab_size = 2
+
+# Sixel graphics (alternative to Kitty protocol)
+# sixel_fraction = 15
+
+[opener]
+# Default openers (customize as needed)
+open = [
+    { run = 'xdg-open "$@"', desc = "Open", for = "linux" },
+]
+edit = [
+    { run = 'nvim "$@"', block = true, desc = "Neovim" },
+    { run = 'vim "$@"', block = true, desc = "Vim" },
+    { run = 'nano "$@"', block = true, desc = "Nano" },
+]
+reveal = [
+    { run = 'xdg-open "$(dirname "$0")"', desc = "Reveal" },
+]
+extract = [
+    { run = 'unar "$1"', desc = "Extract here" },
+]
+
+[open]
+rules = [
+    # Folder
+    { name = "*/", use = ["edit", "open", "reveal"] },
+
+    # Text files
+    { mime = "text/*", use = ["edit", "reveal"] },
+
+    # Images
+    { mime = "image/*", use = ["open", "reveal"] },
+
+    # Videos
+    { mime = "video/*", use = ["open", "reveal"] },
+
+    # Audio
+    { mime = "audio/*", use = ["open", "reveal"] },
+
+    # Archives
+    { mime = "application/zip", use = ["extract", "reveal"] },
+    { mime = "application/gzip", use = ["extract", "reveal"] },
+    { mime = "application/x-tar", use = ["extract", "reveal"] },
+    { mime = "application/x-rar", use = ["extract", "reveal"] },
+    { mime = "application/x-7z-compressed", use = ["extract", "reveal"] },
+
+    # PDFs
+    { mime = "application/pdf", use = ["open", "reveal"] },
+
+    # Fallback
+    { name = "*", use = ["open", "reveal"] },
+]
+
+[tasks]
+micro_workers = 10
+macro_workers = 25
+bizarre_retry = 5
+
+[plugins]
+preload = []
+
+[log]
+enabled = false

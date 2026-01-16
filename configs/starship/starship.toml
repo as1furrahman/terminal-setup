@@ -1,0 +1,149 @@
+# Starship Prompt Configuration
+# Part of: Cross-Distro Terminal Setup
+# Docs: https://starship.rs/config/
+
+# ============================================================================
+# Prompt Format
+# ============================================================================
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$rust\
+$golang\
+$nodejs\
+$lua\
+$docker_context\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Add newline before prompt
+add_newline = true
+
+# ============================================================================
+# Character (Prompt Symbol)
+# ============================================================================
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+# ============================================================================
+# Username
+# ============================================================================
+[username]
+show_always = false
+style_user = "bold cyan"
+style_root = "bold red"
+format = "[$user]($style)@"
+
+# ============================================================================
+# Hostname
+# ============================================================================
+[hostname]
+ssh_only = true
+style = "bold blue"
+format = "[$hostname]($style) "
+
+# ============================================================================
+# Directory
+# ============================================================================
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "red"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Videos" = " "
+
+# ============================================================================
+# Git
+# ============================================================================
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold yellow"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+stashed = "📦"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+
+# ============================================================================
+# Command Duration
+# ============================================================================
+[cmd_duration]
+min_time = 2_000  # Show if command takes > 2 seconds
+style = "bold yellow"
+format = "took [$duration]($style) "
+
+# ============================================================================
+# Programming Languages
+# ============================================================================
+[python]
+symbol = " "
+style = "bold yellow"
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[rust]
+symbol = " "
+style = "bold red"
+format = "[$symbol($version )]($style)"
+
+[golang]
+symbol = " "
+style = "bold cyan"
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = "[$symbol($version )]($style)"
+
+[lua]
+symbol = " "
+style = "bold blue"
+format = "[$symbol($version )]($style)"
+
+# ============================================================================
+# Docker
+# ============================================================================
+[docker_context]
+symbol = " "
+style = "bold blue"
+format = "[$symbol$context]($style) "
+only_with_files = true
+
+# ============================================================================
+# Package Version
+# ============================================================================
+[package]
+disabled = true  # Disable for cleaner prompt
+
+# ============================================================================
+# Time (disabled by default, uncomment to enable)
+# ============================================================================
+[time]
+disabled = true
+format = '🕙 [$time]($style) '
+time_format = "%H:%M"
+style = "bold dimmed white"

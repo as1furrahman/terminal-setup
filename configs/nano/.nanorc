@@ -1,0 +1,74 @@
+# ~/.nanorc
+# Nano Text Editor Configuration
+# Part of: Cross-Distro Terminal Setup
+
+# ============================================================================
+# Display Options
+# ============================================================================
+set linenumbers      # Show line numbers
+set constantshow     # Constantly show cursor position
+set titlecolor bold,white,blue
+set statuscolor bold,white,green
+set numbercolor cyan
+set keycolor cyan
+set functioncolor green
+
+# ============================================================================
+# Editing Behavior
+# ============================================================================
+set tabsize 4        # Tab width
+set tabstospaces     # Convert tabs to spaces
+set autoindent       # Auto-indent new lines
+set trimblanks       # Trim trailing whitespace on save
+set atblanks         # Word wrap at blanks
+
+# ============================================================================
+# Search & Navigation
+# ============================================================================
+set casesensitive    # Case-sensitive search by default
+set regexp           # Use regular expressions in search
+set smarthome        # Smart home key behavior
+
+# ============================================================================
+# UI Enhancements
+# ============================================================================
+set mouse            # Enable mouse support
+set smooth           # Smooth scrolling
+set softwrap         # Soft wrap long lines
+set wordchars "_"    # Characters that form words
+
+# ============================================================================
+# Backup (disabled - we manage backups externally)
+# ============================================================================
+unset backup
+
+# ============================================================================
+# Syntax Highlighting
+# ============================================================================
+# Include all available syntax highlighting files
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
+
+# ============================================================================
+# Key Bindings (Keep defaults mostly, add useful ones)
+# ============================================================================
+# Ctrl+S to save (in addition to Ctrl+O)
+bind ^S savefile main
+
+# Ctrl+Q to quit (in addition to Ctrl+X)
+bind ^Q exit main
+
+# Ctrl+Z to undo
+bind ^Z undo main
+
+# Ctrl+Y to redo
+bind ^Y redo main
+
+# Ctrl+F for find
+bind ^F whereis main
+
+# Ctrl+H for replace
+bind ^H replace main
+
+# Ctrl+G for goto line
+bind ^G gotoline main

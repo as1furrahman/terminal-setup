@@ -1,0 +1,84 @@
+# Cava Audio Visualizer Configuration
+# ~/.config/cava/config
+# Part of: Cross-Distro Terminal Setup
+
+[general]
+# Smoothing mode: normal, scientific, waves, mono
+mode = normal
+
+# Frame rate (30-200)
+framerate = 60
+
+# Time smoothing (0=off, 1-4)
+sensitivity = 100
+
+# Bars
+bars = 0  # 0 = auto (fill screen)
+bar_width = 2
+bar_spacing = 1
+
+# Lower/higher cutoff frequencies
+lower_cutoff_freq = 50
+higher_cutoff_freq = 10000
+
+# Sleep timer (seconds)
+sleep_timer = 0
+
+[input]
+# Audio source: auto, fifo, alsa, pulse, pipewire
+method = pulse
+
+# PulseAudio source (empty = default)
+source = auto
+
+[output]
+# Output method: ncurses, noncurses, raw, noritake
+method = ncurses
+
+# Channels: stereo, mono
+channels = stereo
+
+# Raw mode settings (for scripts)
+raw_target = /dev/stdout
+data_format = binary
+bit_format = 16bit
+ascii_max_range = 1000
+
+[color]
+# Background and foreground (theming deferred)
+background = default
+foreground = default
+
+# Gradient (1 = on, 0 = off)
+gradient = 1
+gradient_count = 6
+
+# Gradient colors (bottom to top)
+gradient_color_1 = '#59b3ff'
+gradient_color_2 = '#66ccff'
+gradient_color_3 = '#73e6ff'
+gradient_color_4 = '#80ffff'
+gradient_color_5 = '#99ffcc'
+gradient_color_6 = '#b3ff99'
+
+[smoothing]
+# Integration smoothing
+integral = 77
+
+# Monstercat style smoothing
+monstercat = 0
+
+# Wave mode settings
+waves = 0
+
+# Noise reduction
+noise_reduction = 77
+
+[eq]
+# Equalizer (in dB, comma separated)
+# Frequencies: 50, 100, 156, 220, 311, 440, 622, 880, 1250, 1750, 2500, 3500, 5000, 7000, 10000
+1 = 1
+2 = 1
+3 = 1
+4 = 1
+5 = 1

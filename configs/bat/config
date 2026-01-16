@@ -1,0 +1,36 @@
+# bat Configuration
+# ~/.config/bat/config
+# Part of: Cross-Distro Terminal Setup
+# Docs: https://github.com/sharkdp/bat
+
+# Theme (using base16 for terminal compatibility)
+--theme="base16"
+
+# Show line numbers
+--style="numbers,changes,header,grid"
+
+# Enable italic text
+--italic-text=always
+
+# Pager settings
+--pager="less -RF"
+
+# File name to show (auto = basename)
+# --file-name=auto
+
+# Map extensions to languages
+--map-syntax "*.conf:INI"
+--map-syntax "*.config:INI"
+--map-syntax ".zshrc:Bourne Again Shell (bash)"
+--map-syntax ".zprofile:Bourne Again Shell (bash)"
+--map-syntax ".bashrc:Bourne Again Shell (bash)"
+--map-syntax "*.toml:TOML"
+
+# Wrap mode: auto, never, character
+--wrap=auto
+
+# Tab width
+--tabs=4
+
+# Color mode: auto, always, never
+--color=auto

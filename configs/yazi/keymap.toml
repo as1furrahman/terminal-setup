@@ -1,0 +1,120 @@
+# Yazi File Manager - Keymap Configuration
+# ~/.config/yazi/keymap.toml
+# Part of: Cross-Distro Terminal Setup
+# Docs: https://yazi-rs.github.io/docs/configuration/keymap
+
+[manager]
+keymap = [
+    # Navigation
+    { on = ["k"], run = "arrow -1", desc = "Move cursor up" },
+    { on = ["j"], run = "arrow 1", desc = "Move cursor down" },
+    { on = ["K"], run = "arrow -5", desc = "Move cursor up 5 lines" },
+    { on = ["J"], run = "arrow 5", desc = "Move cursor down 5 lines" },
+    { on = ["<Up>"], run = "arrow -1", desc = "Move cursor up" },
+    { on = ["<Down>"], run = "arrow 1", desc = "Move cursor down" },
+    { on = ["<PageUp>"], run = "arrow -50%", desc = "Move cursor up half page" },
+    { on = ["<PageDown>"], run = "arrow 50%", desc = "Move cursor down half page" },
+    { on = ["g", "g"], run = "arrow -99999999", desc = "Move cursor to top" },
+    { on = ["G"], run = "arrow 99999999", desc = "Move cursor to bottom" },
+
+    # Directory navigation
+    { on = ["h"], run = "leave", desc = "Go to parent directory" },
+    { on = ["l"], run = "enter", desc = "Enter directory" },
+    { on = ["<Left>"], run = "leave", desc = "Go to parent directory" },
+    { on = ["<Right>"], run = "enter", desc = "Enter directory" },
+    { on = ["<Enter>"], run = "open", desc = "Open file" },
+    { on = ["<Backspace>"], run = "leave", desc = "Go to parent directory" },
+    { on = ["~"], run = "cd ~", desc = "Go to home" },
+    { on = ["-"], run = "cd -", desc = "Go to previous directory" },
+
+    # Selection
+    { on = ["<Space>"], run = "select --state=none", desc = "Toggle selection" },
+    { on = ["v"], run = "visual_mode", desc = "Enter visual mode" },
+    { on = ["V"], run = "visual_mode --unset", desc = "Exit visual mode" },
+    { on = ["a"], run = "select_all --state=true", desc = "Select all" },
+    { on = ["A"], run = "select_all --state=none", desc = "Toggle select all" },
+
+    # File operations
+    { on = ["y"], run = "yank", desc = "Yank (copy)" },
+    { on = ["x"], run = "yank --cut", desc = "Cut" },
+    { on = ["p"], run = "paste", desc = "Paste" },
+    { on = ["P"], run = "paste --force", desc = "Paste (overwrite)" },
+    { on = ["d"], run = "remove", desc = "Delete" },
+    { on = ["D"], run = "remove --permanently", desc = "Delete permanently" },
+
+    # Create
+    { on = ["a"], run = "create", desc = "Create file/directory" },
+    { on = ["r"], run = "rename", desc = "Rename" },
+    { on = ["."], run = "hidden toggle", desc = "Toggle hidden files" },
+
+    # Search
+    { on = ["/"], run = "search fd", desc = "Search files" },
+    { on = ["?"], run = "search rg", desc = "Search in files" },
+    { on = ["n"], run = "search_next", desc = "Next search result" },
+    { on = ["N"], run = "search_prev", desc = "Previous search result" },
+    { on = ["<Esc>"], run = "escape", desc = "Cancel" },
+
+    # Filter
+    { on = ["f"], run = "filter", desc = "Filter files" },
+
+    # Sorting
+    { on = ["s", "n"], run = "sort natural", desc = "Sort naturally" },
+    { on = ["s", "N"], run = "sort natural --reverse", desc = "Sort naturally (reverse)" },
+    { on = ["s", "s"], run = "sort size", desc = "Sort by size" },
+    { on = ["s", "S"], run = "sort size --reverse", desc = "Sort by size (reverse)" },
+    { on = ["s", "m"], run = "sort modified", desc = "Sort by modified" },
+    { on = ["s", "M"], run = "sort modified --reverse", desc = "Sort by modified (reverse)" },
+
+    # Tabs
+    { on = ["t"], run = "tab_create --current", desc = "Create tab" },
+    { on = ["1"], run = "tab_switch 0", desc = "Switch to tab 1" },
+    { on = ["2"], run = "tab_switch 1", desc = "Switch to tab 2" },
+    { on = ["3"], run = "tab_switch 2", desc = "Switch to tab 3" },
+    { on = ["["], run = "tab_switch -1 --relative", desc = "Previous tab" },
+    { on = ["]"], run = "tab_switch 1 --relative", desc = "Next tab" },
+    { on = ["{"], run = "tab_swap -1", desc = "Swap tab left" },
+    { on = ["}"], run = "tab_swap 1", desc = "Swap tab right" },
+
+    # Help
+    { on = ["g", "?"], run = "help", desc = "Show help" },
+
+    # Quit
+    { on = ["q"], run = "quit", desc = "Quit" },
+    { on = ["Q"], run = "quit --no-cwd-file", desc = "Quit without changing directory" },
+]
+
+[tasks]
+keymap = [
+    { on = ["<Esc>"], run = "close", desc = "Close tasks" },
+    { on = ["k"], run = "arrow -1", desc = "Move cursor up" },
+    { on = ["j"], run = "arrow 1", desc = "Move cursor down" },
+    { on = ["<Enter>"], run = "inspect", desc = "Inspect task" },
+    { on = ["c"], run = "cancel", desc = "Cancel task" },
+]
+
+[input]
+keymap = [
+    { on = ["<Esc>"], run = "close", desc = "Cancel" },
+    { on = ["<Enter>"], run = "close --submit", desc = "Submit" },
+
+    # Cursor movement
+    { on = ["<Left>"], run = "move -1", desc = "Move cursor left" },
+    { on = ["<Right>"], run = "move 1", desc = "Move cursor right" },
+    { on = ["<Home>"], run = "move -99999999", desc = "Move to start" },
+    { on = ["<End>"], run = "move 99999999", desc = "Move to end" },
+
+    # Editing
+    { on = ["<Backspace>"], run = "backspace", desc = "Delete previous char" },
+    { on = ["<Delete>"], run = "delete", desc = "Delete next char" },
+    { on = ["<C-u>"], run = "kill bol", desc = "Kill to line start" },
+    { on = ["<C-k>"], run = "kill eol", desc = "Kill to line end" },
+    { on = ["<C-w>"], run = "kill backward", desc = "Kill previous word" },
+]
+
+[help]
+keymap = [
+    { on = ["<Esc>"], run = "escape", desc = "Close help" },
+    { on = ["q"], run = "close", desc = "Close help" },
+    { on = ["k"], run = "arrow -1", desc = "Move cursor up" },
+    { on = ["j"], run = "arrow 1", desc = "Move cursor down" },
+]
