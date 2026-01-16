@@ -1,97 +1,100 @@
-# Starship Prompt - Design Option A: "Powerline Blocks"
-# Combines: BreadOnPenguins blocks + end-4 powerline arrows
-# Style: Solid colored segments with powerline transitions
+# Starship Prompt - Design Option B: "Minimal Blocks"
+# Combines: BreadOnPenguins solid blocks + Minimal info
+# Style: Clean blocks without powerline arrows, single line
 
 add_newline = true
 command_timeout = 1000
 
 format = """
-$cmd_duration\
+$username\
 $directory\
 $git_branch\
 $git_status\
-$python\
-$rust\
-$golang\
+$cmd_duration\
+$fill\
+$python$rust$golang\
 $line_break\
 $character"""
 
 # ============================================================================
-# Character - Mellifluous themed
+# Character
 # ============================================================================
 [character]
 success_symbol = "[❯](bold #b3b393)"
 error_symbol = "[❯](bold #d29393)"
-vimcmd_symbol = "[❮](bold #a8a1be)"
 
 # ============================================================================
-# Directory - Powerline block (green background)
+# Username - Tan block
+# ============================================================================
+[username]
+show_always = true
+style_user = "bg:#c0af8c fg:#1a1a1a bold"
+style_root = "bg:#d29393 fg:#1a1a1a bold"
+format = '[ $user ]($style)'
+
+# ============================================================================
+# Directory - Green block
 # ============================================================================
 [directory]
-home_symbol = " "
-read_only = "  "
-style = "bg:#b3b393 fg:#1a1a1a"
-truncation_length = 4
+style = "bg:#b3b393 fg:#1a1a1a bold"
+truncation_length = 3
 truncation_symbol = "…/"
-format = '[](fg:#b3b393)[󰉋 $path]($style)[](fg:#b3b393 bg:#a8a1be)'
+format = '[ 󰉋 $path ]($style)'
+home_symbol = ""
 
 [directory.substitutions]
-"Documents" = " 󰈙"
-"Downloads" = " "
-"Music" = " 󰎈"
-"Pictures" = " "
-"Videos" = " "
+"Documents" = "󰈙"
+"Downloads" = ""
 "~" = ""
 
 # ============================================================================
-# Git Branch - Powerline block (lavender background)
+# Git Branch - Lavender block
 # ============================================================================
 [git_branch]
 symbol = "󰘬 "
 style = "bg:#a8a1be fg:#1a1a1a"
-truncation_length = 15
-truncation_symbol = "…"
-format = '[$symbol$branch(:$remote_branch)]($style)[](fg:#a8a1be)'
+format = '[ $symbol$branch ]($style)'
 
 [git_status]
-format = '[ $all_status$ahead_behind]($style)'
-style = "#cbaa89"
-conflicted = "="
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-untracked = "?"
-stashed = "≡"
+format = '[$all_status]($style)'
+style = "bg:#5b5b5b fg:#dadada"
 modified = "!"
 staged = "+"
-renamed = "»"
-deleted = "✘"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
 
 # ============================================================================
-# Command Duration - Powerline block (yellow background)
+# Command Duration - Only if > 2s
 # ============================================================================
 [cmd_duration]
-min_time = 500
+min_time = 2000
 style = "bg:#cbaa89 fg:#1a1a1a"
-format = '[](fg:#cbaa89)[󰪢 $duration]($style)[](fg:#cbaa89 bg:#b3b393)'
+format = '[ 󰪢 $duration ]($style)'
 
 # ============================================================================
-# Languages - Simple inline
+# Fill for right alignment
+# ============================================================================
+[fill]
+symbol = " "
+
+# ============================================================================
+# Languages - Right side, no blocks
 # ============================================================================
 [python]
-symbol = " "
+symbol = ""
 style = "#cbaa89"
-format = ' [$symbol$version]($style)'
+format = '[$symbol$version ]($style)'
 
 [rust]
-symbol = " "
+symbol = ""
 style = "#d29393"
-format = ' [$symbol$version]($style)'
+format = '[$symbol$version ]($style)'
 
 [golang]
-symbol = " "
+symbol = ""
 style = "#74a39e"
-format = ' [$symbol$version]($style)'
+format = '[$symbol$version ]($style)'
 
 [package]
 disabled = true
