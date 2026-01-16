@@ -123,5 +123,5 @@ keybind = f11=toggle_fullscreen
 # ============================================================================
 # Bell
 # ============================================================================
-audible-bell = false
-visual-bell = false
+# Disable bell completely (no sound or visual indicator)
+bell = none
