@@ -1,17 +1,18 @@
-# Starship Prompt - Design Option C: "Info-Rich Powerline"
-# Combines: end-4 powerline + More info + BreadOnPenguins time
-# Style: Full powerline with time, user, dir, git, duration
+# Starship Prompt - Design Option B: "Minimal Blocks"
+# Combines: BreadOnPenguins solid blocks + Minimal info
+# Style: Clean blocks without powerline arrows, single line
 
 add_newline = true
 command_timeout = 1000
 
 format = """
-$time\
 $username\
 $directory\
 $git_branch\
 $git_status\
 $cmd_duration\
+$fill\
+$python$rust$golang\
 $line_break\
 $character"""
 
@@ -19,17 +20,8 @@ $character"""
 # Character
 # ============================================================================
 [character]
-success_symbol = "[  󱞩 ](bold #b3b393)"
-error_symbol = "[  󱞩 ](bold #d29393)"
-
-# ============================================================================
-# Time - First block (gray)
-# ============================================================================
-[time]
-disabled = false
-style = "bg:#5b5b5b fg:#dadada"
-format = '[  $time ]($style)[](fg:#5b5b5b bg:#c0af8c)'
-time_format = "%H:%M"
+success_symbol = "[❯](bold #b3b393)"
+error_symbol = "[❯](bold #d29393)"
 
 # ============================================================================
 # Username - Tan block
@@ -38,24 +30,21 @@ time_format = "%H:%M"
 show_always = true
 style_user = "bg:#c0af8c fg:#1a1a1a bold"
 style_root = "bg:#d29393 fg:#1a1a1a bold"
-format = '[ $user ]($style)[](fg:#c0af8c bg:#b3b393)'
+format = '[ $user ]($style)'
 
 # ============================================================================
 # Directory - Green block
 # ============================================================================
 [directory]
-style = "bg:#b3b393 fg:#1a1a1a"
+style = "bg:#b3b393 fg:#1a1a1a bold"
 truncation_length = 3
 truncation_symbol = "…/"
-format = '[ 󰉋 $path ]($style)[](fg:#b3b393 bg:#a8a1be)'
+format = '[ 󰉋 $path ]($style)'
 home_symbol = ""
 
 [directory.substitutions]
 "Documents" = "󰈙"
 "Downloads" = ""
-"Music" = "󰎈"
-"Pictures" = ""
-"Videos" = ""
 "~" = ""
 
 # ============================================================================
@@ -64,29 +53,48 @@ home_symbol = ""
 [git_branch]
 symbol = "󰘬 "
 style = "bg:#a8a1be fg:#1a1a1a"
-truncation_length = 12
-format = '[$symbol$branch]($style)'
+format = '[ $symbol$branch ]($style)'
 
 [git_status]
-format = '[ $all_status$ahead_behind]($style)[](fg:#a8a1be)'
-style = "bg:#a8a1be fg:#1a1a1a"
-conflicted = "="
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-untracked = "?"
+format = '[$all_status]($style)'
+style = "bg:#5b5b5b fg:#dadada"
 modified = "!"
 staged = "+"
-renamed = "»"
-deleted = "✘"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
 
 # ============================================================================
-# Command Duration - Yellow block (only if command took time)
+# Command Duration - Only if > 2s
 # ============================================================================
 [cmd_duration]
-min_time = 500
+min_time = 2000
 style = "bg:#cbaa89 fg:#1a1a1a"
-format = '[](fg:#cbaa89)[ 󰪢 $duration ]($style)[](fg:#cbaa89)'
+format = '[ 󰪢 $duration ]($style)'
+
+# ============================================================================
+# Fill for right alignment
+# ============================================================================
+[fill]
+symbol = " "
+
+# ============================================================================
+# Languages - Right side, no blocks
+# ============================================================================
+[python]
+symbol = ""
+style = "#cbaa89"
+format = '[$symbol$version ]($style)'
+
+[rust]
+symbol = ""
+style = "#d29393"
+format = '[$symbol$version ]($style)'
+
+[golang]
+symbol = ""
+style = "#74a39e"
+format = '[$symbol$version ]($style)'
 
 [package]
 disabled = true
