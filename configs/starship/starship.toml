@@ -1,92 +1,97 @@
-# Starship Prompt - Design Option C: "Info-Rich Powerline"
-# Combines: end-4 powerline + More info + BreadOnPenguins time
-# Style: Full powerline with time, user, dir, git, duration
+# Starship Prompt - Design Option A: "Powerline Blocks"
+# Combines: BreadOnPenguins blocks + end-4 powerline arrows
+# Style: Solid colored segments with powerline transitions
 
 add_newline = true
 command_timeout = 1000
 
 format = """
-$time\
-$username\
+$cmd_duration\
 $directory\
 $git_branch\
 $git_status\
-$cmd_duration\
+$python\
+$rust\
+$golang\
 $line_break\
 $character"""
 
 # ============================================================================
-# Character
+# Character - Mellifluous themed
 # ============================================================================
 [character]
-success_symbol = "[  󱞩 ](bold #b3b393)"
-error_symbol = "[  󱞩 ](bold #d29393)"
+success_symbol = "[❯](bold #b3b393)"
+error_symbol = "[❯](bold #d29393)"
+vimcmd_symbol = "[❮](bold #a8a1be)"
 
 # ============================================================================
-# Time - First block (gray)
-# ============================================================================
-[time]
-disabled = false
-style = "bg:#5b5b5b fg:#dadada"
-format = '[  $time ]($style)[](fg:#5b5b5b bg:#c0af8c)'
-time_format = "%H:%M"
-
-# ============================================================================
-# Username - Tan block
-# ============================================================================
-[username]
-show_always = true
-style_user = "bg:#c0af8c fg:#1a1a1a bold"
-style_root = "bg:#d29393 fg:#1a1a1a bold"
-format = '[ $user ]($style)[](fg:#c0af8c bg:#b3b393)'
-
-# ============================================================================
-# Directory - Green block
+# Directory - Powerline block (green background)
 # ============================================================================
 [directory]
+home_symbol = " "
+read_only = "  "
 style = "bg:#b3b393 fg:#1a1a1a"
-truncation_length = 3
+truncation_length = 4
 truncation_symbol = "…/"
-format = '[ 󰉋 $path ]($style)[](fg:#b3b393 bg:#a8a1be)'
-home_symbol = ""
+format = '[](fg:#b3b393)[󰉋 $path]($style)[](fg:#b3b393 bg:#a8a1be)'
 
 [directory.substitutions]
-"Documents" = "󰈙"
-"Downloads" = ""
-"Music" = "󰎈"
-"Pictures" = ""
-"Videos" = ""
+"Documents" = " 󰈙"
+"Downloads" = " "
+"Music" = " 󰎈"
+"Pictures" = " "
+"Videos" = " "
 "~" = ""
 
 # ============================================================================
-# Git Branch - Lavender block
+# Git Branch - Powerline block (lavender background)
 # ============================================================================
 [git_branch]
 symbol = "󰘬 "
 style = "bg:#a8a1be fg:#1a1a1a"
-truncation_length = 12
-format = '[$symbol$branch]($style)'
+truncation_length = 15
+truncation_symbol = "…"
+format = '[$symbol$branch(:$remote_branch)]($style)[](fg:#a8a1be)'
 
 [git_status]
-format = '[ $all_status$ahead_behind]($style)[](fg:#a8a1be)'
-style = "bg:#a8a1be fg:#1a1a1a"
+format = '[ $all_status$ahead_behind]($style)'
+style = "#cbaa89"
 conflicted = "="
 ahead = "⇡"
 behind = "⇣"
 diverged = "⇕"
 untracked = "?"
+stashed = "≡"
 modified = "!"
 staged = "+"
 renamed = "»"
 deleted = "✘"
 
 # ============================================================================
-# Command Duration - Yellow block (only if command took time)
+# Command Duration - Powerline block (yellow background)
 # ============================================================================
 [cmd_duration]
 min_time = 500
 style = "bg:#cbaa89 fg:#1a1a1a"
-format = '[](fg:#cbaa89)[ 󰪢 $duration ]($style)[](fg:#cbaa89)'
+format = '[](fg:#cbaa89)[󰪢 $duration]($style)[](fg:#cbaa89 bg:#b3b393)'
+
+# ============================================================================
+# Languages - Simple inline
+# ============================================================================
+[python]
+symbol = " "
+style = "#cbaa89"
+format = ' [$symbol$version]($style)'
+
+[rust]
+symbol = " "
+style = "#d29393"
+format = ' [$symbol$version]($style)'
+
+[golang]
+symbol = " "
+style = "#74a39e"
+format = ' [$symbol$version]($style)'
 
 [package]
 disabled = true
